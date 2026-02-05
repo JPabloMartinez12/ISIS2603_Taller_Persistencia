@@ -1,0 +1,28 @@
+package co.edu.uniandes.dse.TallerPersistencia.entities;
+
+import java.util.List;
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
+public class TareaEntity extends BaseEntity {
+
+    private String titulo;
+
+    private String estado; // "Pendiente", "En Progreso", "Terminado"
+
+    private Integer duracionEstimada;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "proyecto_id")
+    private ProyectoEntity proyecto;
+
+    @ManyToMany
+    @JoinTable(
+        name = "tarea_desarrollador",
+        joinColumns = @JoinColumn(name = "tarea_id"),
+        inverseJoinColumns = @JoinColumn(name = "desarrollador_id")
+    )
+    private List<DesarrolladorEntity> desarrolladores;
+}

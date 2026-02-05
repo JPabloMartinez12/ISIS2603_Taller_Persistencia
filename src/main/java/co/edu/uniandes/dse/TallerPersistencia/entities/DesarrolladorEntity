@@ -1,0 +1,17 @@
+package co.edu.uniandes.dse.TallerPersistencia.entities;
+
+import java.util.List;
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
+public class DesarrolladorEntity extends BaseEntity {
+
+    private String nombre;
+
+    private String correo;
+
+    @ManyToMany(mappedBy = "desarrolladores")
+    private List<TareaEntity> tareas;
+}

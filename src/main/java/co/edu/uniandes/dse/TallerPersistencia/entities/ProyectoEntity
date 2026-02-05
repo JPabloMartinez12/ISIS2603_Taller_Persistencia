@@ -1,0 +1,17 @@
+package co.edu.uniandes.dse.TallerPersistencia.entities;
+
+import java.util.List;
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
+public class ProyectoEntity extends BaseEntity {
+
+    private String nombre;
+
+    private String descripcion;
+
+    @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TareaEntity> tareas;
+}
